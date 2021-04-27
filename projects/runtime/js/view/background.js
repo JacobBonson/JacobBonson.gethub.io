@@ -27,38 +27,65 @@ var background = function (window) {
         
         // ANIMATION VARIABLES HERE:
         
-     
+        var lunarLander;
+        var buildings = [];
+
         // called at the start of game and whenever the page is resized
         // add objects for display in background. draws each image added to the background once
         function render() {
             background.removeAllChildren();
-
+ 
             // TODO: 2 - Part 2
             // this fills the background with a obnoxious yellow
             // you should modify this to suit your game
-            var backgroundFill = draw.rect(canvasWidth, ground.y, 'black');
-            background.addChild(backgroundFill);
-            
-            // TODO: 3 - Add a moon and starfield
-            var moon = draw.bitmap('img/moon.png');
-            moon.x = 600;
-            moon.y = 30;
-            moon.scaleX = .3;
-            moon.scaleY = .3;
-            background.addChild(moon);
 
-        for(var i = 1; i < 101; i++) {
-            var circle = draw.circle(10,'white','LightGray',2);
-            circle.x = canvasWidth*Math.random();
-            circle.y = groundY*Math.random();
-            background.addChild(circle);
-        }
+            var backgroundFill = draw.rect(canvasWidth, groundY,'black');
+            background.addChild(backgroundFill);
+
+            
+            // TODO: 3 - Add a earth and starfield
+            
+             for (var i = 1; i < 101; i++) {
+                var star = draw.bitmap('img/Star Picture.png');
+                star.x = canvasWidth*Math.random();
+                star.y = groundY*Math.random() - 175;
+                star.scaleY = 0.2;
+                star.scaleX = 0.2;
+                background.addChild(star);
+            }
+
+            var earth = draw.bitmap('img/Earth.png');
+            earth.x = 1000;
+            earth.y = 50;
+            earth.scaleX = 0.7;
+            earth.scaleY = 0.7;
+            background.addChild(earth);
+
+            var lunarSurface = draw.bitmap('img/ground.png')
+            lunarSurface.x = -80; 
+            lunarSurface.y = groundY - 825; 
+            lunarSurface.scaleX = 2; 
+            lunarSurface.scaleY = 2; 
+            background.addChild(lunarSurface);
+
 
             // TODO 5: Part 1 - Add buildings!     Q: This is before TODO 4 for a reason! Why?
             
+           /* for(var i=0;i<6;++i) {
+                var buildingHeight = 250*Math.random() + 50;
+                var building = draw.rect(50, buildingHeight, 'white');
+                building.x = 200*i;
+                building.y = groundY-buildingHeight;
+                background.addChild(building);
+                buildings.push(building);
+            }
+            */
+            // TODO 4: Part 1 - Add a lunarLander
             
-            // TODO 4: Part 1 - Add a tree
-            
+            lunarLander = draw.bitmap('img/Lunar-Lander.png');
+            lunarLander.x = canvasWidth - 1;
+            lunarLander.y = groundY - 200;
+            background.addChild(lunarLander);
             
         } // end of render function - DO NOT DELETE
         
@@ -70,9 +97,24 @@ var background = function (window) {
             var canvasWidth = app.canvas.width;
             var canvasHeight = app.canvas.height;
             var groundY = ground.y;
+
+            // TODO 4: Part 2 - Move the lunarLander!
             
-            // TODO 4: Part 2 - Move the tree!
-            
+
+            lunarLander.x = lunarLander.x - 3;
+
+            if(lunarLander.x < -100) {
+                lunarLander.x = canvasWidth;
+            }
+
+            for (var i = 0; i < buildings.length; i++) {
+                var building = buildings[i];
+                building.x = building.x - 5;
+                if(building.x < -50) {
+                    building.x = canvas.width;
+                }
+                
+            }
             
             // TODO 5: Part 2 - Parallax
             

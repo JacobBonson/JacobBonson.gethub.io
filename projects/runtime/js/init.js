@@ -35,11 +35,11 @@ var init = function (window) {
 var background = opspark.makeBackground(app,ground);
 view.addChild(background);
     
-    var help = draw.textfield('MOVES || up: jump | right: flying jump | down: duck | space: fire | q self destruct!', 
-        '20px Arial',
-        '#ccc', 'left');
+    var help = draw.textfield('MOVES || up: jump | right: flying jump | down: duck | space: fire | q self destruct! | jump the crators, kill the aliens, and collect the ufos', 
+        '30px Arial',
+        '#ffffff', 'left');
     help.x = 10;
-    help.y = ground.y + ground.getBounds().height + 10;
+    help.y = ground.y + ground.getBounds().height + 100;
     view.addChild(help);
     
     window.opspark.makeSpriteSheet(data)
